@@ -1,0 +1,14 @@
+{
+  "name": "settwopromises",
+  "version": "1.0.0",
+  "description": "",
+  "main": "exe1.js",
+  "scripts": {
+    "test:one": "jest -i exe1.test.js"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "jest": "^26.4.0"
+  }
+}
