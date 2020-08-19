@@ -24,11 +24,11 @@ function flatten_declarative(oldObject, parentName){
 
     const reduce = (old,prefix,newObj) => {
         Object.entries(old).forEach(([key,value])=>{
-            let name = `${prefix}_${key}`;
+            let property = `${prefix}_${key}`;
             if (!isObject(value)){
-                newObj = addToObject(newObj,name,value);
+                newObj = addToObject(newObj,property,value);
               }else{
-                   reduce(value,name,newObj);
+                   reduce(value,property,newObj);
                }
 
           })
