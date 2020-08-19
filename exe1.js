@@ -20,22 +20,22 @@
 //declarative approach
 function flatten_declarative(oldObject, parentName){
     const addToObject =  (obj,key,value) => {obj[key] = value; return obj};
-    
     const isObject = prop => typeof(prop) === "object" ? !Array.isArray(prop) : false;
 
-    const reduce = (old,prefix,howToCombine,buildingUp) => {
-       for (const key in old) {
-           let value = old[key], name = `${prefix}_${key}`;
-          if (!isObject(value)){
-              buildingUp = howToCombine(buildingUp,name,value);
-          }else{
-               reduce(value,name,howToCombine,buildingUp);
-           }
-       }
-       return buildingUp; 
+    const reduce = (old,prefix,newObj) => {
+        Object.entries(old).forEach(([key,value])=>{
+            let name = `${prefix}_${key}`;
+            if (!isObject(value)){
+                newObj = addToObject(newObj,name,value);
+              }else{
+                   reduce(value,name,newObj);
+               }
+
+          })
+       return newObj; 
  };
 
- return reduce(oldObject,parentName,addToObject,{})
+ return reduce(oldObject,parentName,{})
 }
 
 
