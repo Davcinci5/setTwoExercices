@@ -16,30 +16,33 @@
     return newObject;
  }
 
-
 //declarative approach
 function flatten_declarative(oldObject, parentName){
-    const addToObject =  (obj,key,value) => {obj[key] = value; return obj};
+    const CombineAndCreateObject =  (objToCombine,key,value) => {
+        let newObj = {...objToCombine};
+        newObj[key] = value;
+        return newObj;
+    };
     const isObject = prop => typeof(prop) === "object" ? !Array.isArray(prop) : false;
 
     const reduce = (old,prefix,newObj) => {
-        Object.entries(old).forEach(([key,value])=>{
-            let property = `${prefix}_${key}`;
+        return Object.entries(old).reduce((obj,[key,value])=>{
+            let property = `${prefix}_${key}`,newObject;
             if (!isObject(value)){
-                newObj = addToObject(newObj,property,value);
+                newObject = CombineAndCreateObject(obj,property,value);
               }else{
-                   reduce(value,property,newObj);
+                   return reduce(value,property,obj);
                }
-
-          })
-       return newObj; 
+               return newObject;
+          } ,newObj)
+       
  };
 
  return reduce(oldObject,parentName,{})
 }
 
 
-//console.log(flatten_declarative(oldObj, "oldObj"));
+//console.log("salio ",flatten_declarative(oldObj, "oldObj"));
 module.exports = {flatten_imperative,flatten_declarative}
  
 
