@@ -37,4 +37,4 @@ function flattenArray_iterative(input,newArray = []){
 
 
 
-module.exports = {flattenArray_iterative,flattenArray_recursive}
+module.exports = {flattenArray_iterative,flattenArray_recursive};
