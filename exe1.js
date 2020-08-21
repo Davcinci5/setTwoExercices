@@ -18,25 +18,18 @@
 
 //declarative approach
 function flatten_declarative(oldObject, parentName){
-    const CombineAndCreateObject =  (objToCombine,key,value) => {
-        let newObj = {...objToCombine};
-        newObj[key] = value;
-        return newObj;
-    };
+    const combineAndCreateObject = (objToCombine,key,value) => ({
+        ...objToCombine,
+        [key]: value
+        });
     const isObject = prop => typeof(prop) === "object" ? !Array.isArray(prop) : false;
 
-    const reduce = (old,prefix,newObj) => {
-        return Object.entries(old).reduce((obj,[key,value])=>{
-            let property = `${prefix}_${key}`,newObject;
-            if (!isObject(value)){
-                newObject = CombineAndCreateObject(obj,property,value);
-              }else{
-                   return reduce(value,property,obj);
-               }
-               return newObject;
-          } ,newObj)
-       
- };
+    const reduce = (old,prefix,newObj) => Object.entries(old)
+                    .reduce((obj,[key,value])=>{
+                    let property = `${prefix}_${key}`;
+            return isObject(value)? reduce(value, property, obj) :
+                                    combineAndCreateObject(obj,property,value);
+                                } ,newObj);
 
  return reduce(oldObject,parentName,{})
 }
