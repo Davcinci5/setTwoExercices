@@ -1,32 +1,33 @@
+
+const isArray = (element)=>Array.isArray(element);
+const combineAndCreateArray = (arrayToCombine,element) => [...arrayToCombine,element];
+
 function flattenArray_recursive(input){
-   const isArray = (element)=>Array.isArray(element);
-   const combineAndCreateArray = (arrayToCombine,element) => [...arrayToCombine,element];
+    const reduce = (oldArray,newArray) => oldArray.reduce((array,actualElement)=>{
+        return isArray(actualElement)? reduce(actualElement,array) :
+            combineAndCreateArray(array,actualElement);
+    } ,newArray);
 
-   const myReduce = (oldArray,newArray) => oldArray.reduce((array,actualElement)=>{
-                        return isArray(actualElement)? myReduce(actualElement,array) :
-                                           combineAndCreateArray(array,actualElement);
-                        } ,newArray);
-
-    return myReduce(input,[]);
+    return reduce(input,[]);
 }
 
 function flattenArray_iterative(input,newArray = []){
     let i = 0,
-    actual_array = input;
-    previous_index = [];
-    previous_arrays = [];
-    while(i<actual_array.length || previous_arrays.length!==0){ 
+        actual_array = input,
+        previous_indexandArray = [];
+
+    while(i<actual_array.length || previous_indexandArray.length!==0){ 
         let element =  actual_array[i];
         if(!Array.isArray(element)){
             if(element!==undefined ) newArray.push(element);
             if(i>actual_array.length-1){
-                i = previous_index.pop();
-                actual_array = previous_arrays.pop();
+                let previous = previous_indexandArray.pop();
+                i = previous.index;
+                actual_array = previous.array;
             }
             i++;
         }else{
-            previous_arrays.push(actual_array)
-            previous_index.push(i);
+            previous_indexandArray.push({index:i,array:actual_array});
             actual_array = element;
             i = 0;
         }
