@@ -70,6 +70,7 @@ let findIndex = (str,starIndex) =>{
 };
 
 let getCharacteres = (str) => {
+    if(str[0]!=='(' || str[1]==='(') throw new Error(`verify expected '(' or a value `);
     let counter_ocurrences = 0, i = 0;
     while(str[i]!==',' && str[i]!==')'){
         if(str[i]!=='(') counter_ocurrences++;
@@ -108,5 +109,9 @@ function printTree(tree, order = 'infix') {
 }
  
 module.exports = printTree;
-//console.log(printTree('(Acdf,(B,(D),(E)),(C,(F,(H),(I)),(G,,(J))))'));
+//console.log(printTree('(A,(B,(3),),(5))'));//(A,(2,,(3)),())
+
+
+//in that case the input you pass in  an invalid string because is missing a parentheses  --->'(' (,,) () ) in order to complete the node, so I have to check the input will be valid
+
 

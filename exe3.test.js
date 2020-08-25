@@ -52,3 +52,37 @@ test("print '(AAA,(2,(BB),(5)),(CCC))' in postfix ",()=>{
     let data = printTree(input,'postfix');
     expect(data).toBe('BB52CCCAAA');
 });
+
+test("throw error invalid chain '(,,)())' missing a  '('",()=>{
+    const input = '(,,)())';
+    try{printTree(input);}catch({message:e}){
+        expect(e).toBe("verify expected '(' or a value ");
+    } 
+});
+
+test("throw error invalid chain '((,,)())' expecting a value",()=>{
+    const input = '(,,)())';
+    try{printTree(input);}catch({message:e}){
+        expect(e).toBe("verify expected '(' or a value ");
+    } 
+});
+
+test("throw error invalid chain '(A((B))())' expecting a ,",()=>{
+    const input = '(A((B))())';
+    try{printTree(input);}catch({message:e}){
+        expect(e).toBe("verify expected '(' or a value ");
+    } 
+});
+test("throw error invalid chain '(A((B),)())' expecting a value",()=>{
+    const input = '(A(B,(5))())';
+    try{printTree(input);}catch({message:e}){
+        expect(e).toBe("verify expected '(' or a value ");
+    } 
+});
+
+test("throw error invalid chain '(A,(B,(3),),(5))' expecting a value",()=>{
+    const input = '(A,(B,(3),),(5))';
+    let data = printTree(input);
+    expect(data).toBe("3BA5");
+});
+
