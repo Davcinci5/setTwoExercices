@@ -59,25 +59,36 @@ class Tree
 } 
 
 let findIndex = (str,starIndex) =>{
-    let counter_ocurrences = 0;
+    let counter_openParentheses = 0;
     for(let i=starIndex;i<str.length;i++){
-        if(str[i]==='(') counter_ocurrences++;
+        if(str[i]==='(') counter_openParentheses++;
         if(str[i]===')'){
-            if(--counter_ocurrences === 0) return i;
+            if(--counter_openParentheses === 0) return i;
         }
     }
     return -1;
+};
+
+let getCharacteres = (str) => {
+    let counter_ocurrences = 0, i = 0;
+    while(str[i]!==',' && str[i]!==')'){
+        if(str[i]!=='(') counter_ocurrences++;
+        i++;
+    }
+    return counter_ocurrences;
 };
 
 
 
 function createTree(str){
     if(str.length === 0) return null;
-    let node = new Node(str[1]);
-    let indexFirstNode = str[3] === ',' ? 2 : findIndex(str,3);
-    if(indexFirstNode !== -1){ 
-        let indexSecondNode = indexFirstNode + 2;
-        node.left = createTree(str.substring(3,indexFirstNode+1));
+    let characteres = getCharacteres(str),
+        node = new Node(str.substr(1,characteres)),
+        nextParenthesesIndex = characteres+2,
+        indexLastParentheses = str[nextParenthesesIndex] === ',' ? (characteres+1) : findIndex(str,nextParenthesesIndex);
+    if(indexLastParentheses !== -1){ 
+        let indexSecondNode = indexLastParentheses + 2;
+        node.left = createTree(str.substring(nextParenthesesIndex,indexLastParentheses+1));
         node.right = createTree(str.substring(indexSecondNode,str.length-1));
     }
     return node;
@@ -97,3 +108,5 @@ function printTree(tree, order = 'infix') {
 }
  
 module.exports = printTree;
+//console.log(printTree('(Acdf,(B,(D),(E)),(C,(F,(H),(I)),(G,,(J))))'));
+
