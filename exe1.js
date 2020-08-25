@@ -35,4 +35,3 @@ function flatten_declarative(oldObject, parentName){
 
 //console.log("salio ",flatten_declarative(oldObj, "oldObj"));
 module.exports = {flatten_imperative,flatten_declarative}; 
-
