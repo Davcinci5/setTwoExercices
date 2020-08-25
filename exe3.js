@@ -109,9 +109,4 @@ function printTree(tree, order = 'infix') {
 }
  
 module.exports = printTree;
-//console.log(printTree('(A,(B,(3),),(5))'));//(A,(2,,(3)),())
-
-
-//in that case the input you pass in  an invalid string because is missing a parentheses  --->'(' (,,) () ) in order to complete the node, so I have to check the input will be valid
-
 
