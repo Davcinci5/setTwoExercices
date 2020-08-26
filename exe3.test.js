@@ -53,7 +53,7 @@ test("print '(AAA,(2,(BB),(5)),(CCC))' in postfix ",()=>{
     expect(data).toBe('BB52CCCAAA');
 });
 
-test("throw error invalid chain '(,,)())' missing a  '('",()=>{
+test("throw error invalid chain '(,,)())' missing a  '( and value'",()=>{
     const input = '(,,)())';
     try{printTree(input);}catch({message:e}){
         expect(e).toBe("verify expected '(' or a value ");

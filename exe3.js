@@ -68,9 +68,9 @@ let findIndex = (str,starIndex) =>{
     }
     return -1;
 };
-
+let regularExp = /[a-zA-Z0-9]/;
 let getCharacteres = (str) => {
-    if(str[0]!=='(' || str[1]==='(') throw new Error(`verify expected '(' or a value `);
+    if(str[0]!=='(' || !regularExp.test(str[1]) || findIndex(str,0)===-1) throw new Error(`verify expected '(' or a value `);
     let counter_ocurrences = 0, i = 0;
     while(str[i]!==',' && str[i]!==')'){
         if(str[i]!=='(') counter_ocurrences++;
@@ -82,11 +82,11 @@ let getCharacteres = (str) => {
 
 
 function createTree(str){
-    if(str.length === 0) return null;
+    if(str.length <= 1) return null;
     let characteres = getCharacteres(str),
         node = new Node(str.substr(1,characteres)),
         nextParenthesesIndex = characteres+2,
-        indexLastParentheses = str[nextParenthesesIndex] === ',' ? (characteres+1) : findIndex(str,nextParenthesesIndex);
+        indexLastParentheses = str[nextParenthesesIndex] === ','? (characteres+1) : findIndex(str,nextParenthesesIndex);
     if(indexLastParentheses !== -1){ 
         let indexSecondNode = indexLastParentheses + 2;
         node.left = createTree(str.substring(nextParenthesesIndex,indexLastParentheses+1));
@@ -109,4 +109,3 @@ function printTree(tree, order = 'infix') {
 }
  
 module.exports = printTree;
-
