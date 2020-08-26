@@ -112,5 +112,11 @@ test("throw error invalid chain '(,)' expecting a value",()=>{
         expect(e).toBe("verify expected '(' or a value ");
     } 
 });
+test("throw error invalid chain '(N(A))' expecting a value",()=>{
+    const input = '(N(A))';
+    try{printTree(input);}catch({message:e}){
+        expect(e).toBe("verify expected '(' or a value ");
+    } 
+});
 
 

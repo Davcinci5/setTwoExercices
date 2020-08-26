@@ -70,12 +70,12 @@ let findIndex = (str,starIndex) =>{
 };
 let regularExp = /[a-zA-Z0-9]/;
 let getCharacteres = (str) => {
-    if(str[0]!=='(' || !regularExp.test(str[1]) || findIndex(str,0)===-1) throw new Error(`verify expected '(' or a value `);
-    let counter_ocurrences = 0, i = 0;
-    while(str[i]!==',' && str[i]!==')'){
-        if(str[i]!=='(') counter_ocurrences++;
+    let counter_ocurrences = 0, i = 1;
+    while(regularExp.test(str[i])&&i<str.length){
+        counter_ocurrences++;
         i++;
     }
+    if(str[0]!=='(' || !regularExp.test(str.substr(1,counter_ocurrences)) || findIndex(str,0)===-1 || str[i]!==',' && str[i]!==')') throw new Error(`verify expected '(' or a value `);
     return counter_ocurrences;
 };
 
