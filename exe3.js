@@ -82,7 +82,7 @@ let getCharacteres = (str) => {
 
 
 function createTree(str){
-    if(str.length <= 1) return null;
+    if(str.length === 0) return null;
     let characteres = getCharacteres(str),
         node = new Node(str.substr(1,characteres)),
         nextParenthesesIndex = characteres+2,
@@ -90,7 +90,9 @@ function createTree(str){
     if(indexLastParentheses !== -1){ 
         let indexSecondNode = indexLastParentheses + 2;
         node.left = createTree(str.substring(nextParenthesesIndex,indexLastParentheses+1));
-        node.right = createTree(str.substring(indexSecondNode,str.length-1));
+        if(str[indexSecondNode]!==undefined){
+            node.right = createTree(str.substring(indexSecondNode,str.length-1));
+        }
     }
     return node;
 }
@@ -107,5 +109,8 @@ function printTree(tree, order = 'infix') {
         return _tree.infix();
     }
 }
- 
+
 module.exports = printTree;
+
+
+

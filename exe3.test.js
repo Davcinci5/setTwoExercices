@@ -53,6 +53,18 @@ test("print '(AAA,(2,(BB),(5)),(CCC))' in postfix ",()=>{
     expect(data).toBe('BB52CCCAAA');
 });
 
+test("print '(A,(B))' ",()=>{
+    const input = '(A,(B))';
+    let data = printTree(input);
+    expect(data).toBe('BA');
+});
+
+test("print '(A,(B),)' ",()=>{
+    const input = '(A,(B),)';
+    let data = printTree(input);
+    expect(data).toBe('BA');
+});
+
 test("throw error invalid chain '(,,)())' missing a  '( and value'",()=>{
     const input = '(,,)())';
     try{printTree(input);}catch({message:e}){
@@ -80,9 +92,25 @@ test("throw error invalid chain '(A((B),)())' expecting a value",()=>{
     } 
 });
 
-test("throw error invalid chain '(A,(B,(3),),(5))' expecting a value",()=>{
-    const input = '(A,(B,(3),),(5))';
-    let data = printTree(input);
-    expect(data).toBe("3BA5");
+test("throw error invalid chain '(A,,,)' expecting a value",()=>{
+    const input = '(A,,,)';
+    try{printTree(input);}catch({message:e}){
+        expect(e).toBe("verify expected '(' or a value ");
+    } 
 });
+
+test("throw error invalid chain '(,,(A))' expecting a value",()=>{
+    const input = '(,,(A))';
+    try{printTree(input);}catch({message:e}){
+        expect(e).toBe("verify expected '(' or a value ");
+    } 
+});
+
+test("throw error invalid chain '(,)' expecting a value",()=>{
+    const input = '(,)';
+    try{printTree(input);}catch({message:e}){
+        expect(e).toBe("verify expected '(' or a value ");
+    } 
+});
+
 
