@@ -61,35 +61,35 @@ tree.descendents.push(...[oneLevel1,twoLevel1,threeLevel1,fiveLevel1,sevenLevel1
 
 test('fails in find the numbers 1,1 at the same level',()=>{
     let data = isSameLevel(tree,1,1);
-    expect(data).toBe('The numbers 1 and 1 are not found in the same level anywhere');
+    expect(data).toBe(false);
 });
 
 test('success in find the numbers 3,3 at the same deep level',()=>{
     let data = isSameLevel(tree,3,3);
-    expect(data).toBe('The numbers 3 and 3 can be found in the same depth level');
+    expect(data).toBe(true);
 });
 
 test('fails in find the numbers 2,0 at the same level',()=>{
     let data = isSameLevel(tree,2,0);
-    expect(data).toBe('The numbers 2 and 0 are not found in the same level anywhere');
+    expect(data).toBe(false);
 });
 
 test('success in find the numbers 9,6 at the same deep level',()=>{
     let data = isSameLevel(tree,9,6);
-    expect(data).toBe('The numbers 9 and 6 can be found in the same depth level');
+    expect(data).toBe(true);
 });
 
 test('fails in find the numbers 12,13 both are not in the tree',()=>{
     let data = isSameLevel(tree,12,13);
-    expect(data).toBe('The numbers 12 and 13 are not found in the same level anywhere');
+    expect(data).toBe(false);
 });
 
 test('fails in find the numbers 20,0 since 20 is not in the tree but 0 is in it',()=>{
     let data = isSameLevel(tree,20,0);
-    expect(data).toBe('The numbers 20 and 0 are not found in the same level anywhere');
+    expect(data).toBe(false);
 });
 
 test('success in find the numbers 1,7 both at the same deep level',()=>{
     let data = isSameLevel(tree,1,7);
-    expect(data).toBe('The numbers 1 and 7 can be found in the same depth level');
+    expect(data).toBe(true);
 });
