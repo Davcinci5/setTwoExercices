@@ -34,3 +34,9 @@ test("return index one since 56 = 56 ",()=>{
     let result = findIndex(array);
     expect(result).toBe(1);
 });
+
+test("return -1 array length five and unbalanced ",()=>{
+    let array = [1,2,8,2,1];
+    let result = findIndex(array);
+    expect(result).toBe(-1);
+});
