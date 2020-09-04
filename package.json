@@ -10,7 +10,9 @@
     "test:four": "jest -i exe4.test.js",
     "test:five": "jest -i exe5.test.js",
     "test:six": "jest -i exe6.test.js",
-    "test:seven": "jest -i exe7.test.js"
+    "test:seven": "jest -i exe7.test.js",
+    "test:eight": "jest -i exe8.test.js",
+    "test:nine": "jest -i exe9.test.js"
   },
   "author": "",
   "license": "ISC",
