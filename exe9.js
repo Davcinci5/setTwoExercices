@@ -1,14 +1,15 @@
 
 
 function findStartLoopNode(root){
-    if(root?.visited !==undefined && !root.visited){
-        root.visited = true;
-        return findStartLoopNode(root.next);
-    }else{
-        return root;
+    let actualNode = root;
+    while(actualNode!==null && !actualNode.visited){
+        actualNode.visited = true;
+        actualNode = actualNode.next;
     }
+    return actualNode;
 }
 
 
 
 module.exports = findStartLoopNode;
+
