@@ -4,7 +4,6 @@ class Node{
     constructor(value){
         this.value = value,
         this.next = null,
-        this.visited = false;
     }
 }
 test('find Node with value 3',()=>{
