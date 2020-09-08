@@ -8,7 +8,6 @@ class Node{
 
 class LinkekList{
     constructor(){
-        this.length = 0;
         this.head = null;
         this.last = null;
     }
@@ -20,7 +19,6 @@ class LinkekList{
             this.last.next = new Node(value);
             this.last = this.last.next;
         }
-        this.length++;
     }
 }
 

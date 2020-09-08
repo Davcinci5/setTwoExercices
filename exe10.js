@@ -1,20 +1,18 @@
 function isPalindrome(list){
     if(list.head === null) return false;
-    let length = list.length, half = Math.ceil(length/2), stack = [], counter = 1;
-    list =list.head;
-    while(list !== null){
-        if(counter<half){
-            stack.push(list.value);
-        }else if(counter === half){
-            if(length%2 !== 1)stack.push(list.value);
-        }else{
-            if(stack.pop()!==list.value) return false;
-        }
+    let stack = [],
+        node =list.head;
+    while(node !== null){
+        stack.push(node.value);
+        node =node.next;
+    }
+    let length = stack.length, half = length%2 !== 1 ? Math.ceil(length/2) : Math.floor(length/2), counter = 1;
+    list = list.head;
+    while(counter<=half){
+        if(stack.pop()!==list.value) return false; 
         list =list.next;
         counter++;
     }
     return true;
-
 }
 module.exports = isPalindrome;
-// console.log(isPalindrome(list1));
