@@ -1,37 +1,20 @@
-class Node{
-    constructor(value){
-        this.value = value;
-        this.next = null;
-    }
-}
-
-class LinkekList{
-    constructor(){
-        this.length = 0;
-        this.head = null;
-        this.last = null;
-    }
-    add(value){
-        if(this.head ===null){ this.head = new Node(value); this.last = this.head;}
-        else{
-            this.last.next = new Node(value);
-            this.last = this.last.next;
-        }
-        this.length++;
-    }
-}
-
-let list1 = new LinkekList();
-[1,2,2,1].forEach(v=>list1.add(v));
-
-
 function isPalindrome(list){
-    let stack = [];
+    if(list.head === null) return false;
+    let length = list.length, half = Math.ceil(length/2), stack = [], counter = 1;
+    list =list.head;
     while(list !== null){
-        stack.push(list.value);
+        if(counter<half){
+            stack.push(list.value);
+        }else if(counter === half){
+            if(length%2 !== 1)stack.push(list.value);
+        }else{
+            if(stack.pop()!==list.value) return false;
+        }
         list =list.next;
+        counter++;
     }
-    while()
+    return true;
 
 }
-console.log(isPalindrome(list1));
+module.exports = isPalindrome;
+// console.log(isPalindrome(list1));
