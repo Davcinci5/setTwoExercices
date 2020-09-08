@@ -1,18 +1,22 @@
 function isPalindrome(list){
     if(list.head === null) return false;
-    let stack = [],
-        node =list.head;
-    while(node !== null){
-        stack.push(node.value);
-        node =node.next;
+    let hare = list.head,
+        turtle = list.head,
+        stack = [];
+    while(hare && hare.next){
+        hare = hare.next.next;
+        stack.push(turtle.value);
+        turtle = turtle.next;
     }
-    let length = stack.length, half = length%2 !== 1 ? Math.ceil(length/2) : Math.floor(length/2), counter = 1;
-    list = list.head;
-    while(counter<=half){
-        if(stack.pop()!==list.value) return false; 
-        list =list.next;
-        counter++;
+    while(turtle){
+        let value = stack.pop();
+        if(value !== turtle.value) {
+            if(value !==turtle.next?.value) return false;
+        }
+        turtle = turtle.next;
     }
     return true;
+
 }
+
 module.exports = isPalindrome;
