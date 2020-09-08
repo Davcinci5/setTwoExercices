@@ -2,8 +2,8 @@ let findStartLoopNode = require('./exe9');
 
 class Node{
     constructor(value){
-        this.value = value,
-        this.next = null,
+        this.value = value;
+        this.next = null;
     }
 }
 test('find Node with value 3',()=>{
