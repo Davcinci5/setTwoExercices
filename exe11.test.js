@@ -78,3 +78,25 @@ test('throw error, found a string nested value',()=>{
         expect(e).toBe('error');
     }
 });
+test('throw error, found a null nested value',()=>{
+    const obj= {};
+    obj.arre = [0,1,2];
+    obj.arre.arre  = [6,7,8];
+    obj.arre.arre.fn =()=>{};
+    obj.arre.arre.fn.fn = ()=>{};
+    obj.arre.arre.fn.fn.null=null;
+    let fn = () =>{};
+    try{
+        set(obj,'arre.arre.fn.fn.null.value', fn);
+        expect(obj.arre.arre.fn.fn.null.value).toEqual(fn);
+    }catch({message:e}){
+        expect(e).toBe('error');
+    }
+});
+
+test('create 4 missing properties and set value 1, success',()=>{
+    let obj= {};
+    set(obj,"a.b.c.d",1);
+    expect(obj.a.b.c.d).toBe(1);
+
+});
