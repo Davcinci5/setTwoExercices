@@ -12,7 +12,6 @@ function isValidInput(value){
 }
 
 function set(obj,path,value){
-    let copyObj = {...obj};
     let array =  path.split(".");
     for (let i = 0; i < array.length; i++) {
         let property = array[i];
@@ -22,9 +21,29 @@ function set(obj,path,value){
         }
         obj=obj[property];
     }
-    return copyObj;
+    return;
 }
 
 module.exports = set;
 
-
+function buildPath(acc, key) {
+    if (acc[key] === undefined) return acc[key] = {};
+    if (acc[key] === null ||
+    !(acc[key] instanceof Object) ||
+    Object.isFrozen(acc[key]) ||
+    Object.isSealed(acc[key])
+    ) throw new Error("Illegal property assignment");
+    return acc[key];
+}
+/**
+    *
+    * @param {Object} obj
+    * @param {string} path
+    * @param {*} value
+    */
+function set(obj, path, value) {
+    const props = path.split('.');
+    const last = props.pop();
+    obj = props.reduce(buildPath, obj);
+    obj[last] = value;
+}
