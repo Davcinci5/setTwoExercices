@@ -2,7 +2,7 @@
 require('@testing-library/jest-dom/extend-expect');
 
 
-test("test async",done =>{
+test("very elements in correct order",done =>{
     document.body.innerHTML = `
     <ul id="results"></ul>  
     `;
@@ -14,7 +14,6 @@ test("test async",done =>{
  
     test("TestBlock A", function (actual) {
         let blockA = document.getElementById('results').children[1].children[0].children;
-        jest.setTimeout(20000);
         assert(true, "Inside TestBlock A");
         setTimeout(()=>{assert(true,"test delayed A",actual),
         //expects
@@ -57,15 +56,15 @@ test("test async",done =>{
 
 
 // //first approach 
-// assert(true, "Outside and before the test block");
+assert(true, "Outside and before the test block");
  
-// test("TestBlock A", function (actual) {
-//     assert(true, "Inside TestBlock A");
-//     setTimeout(()=>assert(true,"test delayed A",actual), 1000);
-// });
-// assert(true, "Outside and after the TestBlock A");
-// test("TestBlock B", function (actual) {
-//     assert(true, "Inside TestBlock B");
-//     setTimeout(assert, 500, true, "test delayed B",actual);
-// });
-// assert(true, "Outside and after TestBlock B");
+test("TestBlock A", function (actual) {
+    assert(true, "Inside TestBlock A");
+    setTimeout(()=>assert(true,"test delayed A",actual), 1000);
+});
+assert(true, "Outside and after the TestBlock A");
+test("TestBlock B", function (actual) {
+    assert(true, "Inside TestBlock B");
+    setTimeout(assert, 500, true, "test delayed B",actual);
+});
+assert(true, "Outside and after TestBlock B");
