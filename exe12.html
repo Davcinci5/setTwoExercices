@@ -1,19 +1,17 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-</head>
-<body>
-    <ul id="results">
-        <li style="color: green;">Outside and before the test block</li>
-        <li>TestBlock A
-            <ul>
-                <li style="color: green;">Inside TestBlock A</li>
-                <li style="color: green;">test delayed A</li>
-            </ul>
-        </li>
-    </ul>
-</body>
-</html>
+<ul id="results"></ul>
+<script src="./exe12.js"></script>
+<script>
+   assert(true, "Outside and before the test block");
+ 
+   test("TestBlock A", function () {
+      // console.log("root: ",assert1);
+       assert(true, "Inside TestBlock A");
+       setTimeout(()=>assert(true,"test delayed A"), 1000);
+   });
+   assert(true, "Outside and after the TestBlock A");
+   test("TestBlock B", function () {
+       assert(true, "Inside TestBlock B");
+       setTimeout(assert, 500, true, "test delayed B");
+   });
+   assert(true, "Outside and after TestBlock B");
+</script>
