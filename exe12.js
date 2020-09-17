@@ -20,11 +20,14 @@
             function _setTimeout(newCb,time,...args){                
                 let customizedCB = () =>{
                     global.assert = (pass, message) => { return _root.appendChild(result(message,pass));};
-                    newCb(...args);
+                    if(args.length>0){
+                        global.assert(...args);
+                    }else{
+                        newCb();
+                    }
                 };
                 originalSet(customizedCB,time);
             }
-            global.assert = (pass, message) => { return _root.appendChild(result(message,pass));};   
             global.setTimeout = _setTimeout;
                             
             testBlock();
