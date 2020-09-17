@@ -14,11 +14,9 @@
             .appendChild(document.createElement('ul'));
 
         (function(_root){
-            let originalSet =  global.setTimeout,
-                assertParent = global.assert;
-
-            function _setTimeout(newCb,time,...args){                
-                newCb = newCb.name === 'assert' ? ()=>global.assert(...args) : newCb;
+            let originalSet =  global.setTimeout;
+            function _setTimeout(newCb,time,...args){           
+                newCb = newCb.name === 'assert' ? ()=>global.assert(...args) : newCb.bind(this,...args);
                 let customizedCB = () =>{
                     global.assert = (pass, message) => { return _root.appendChild(result(message,pass));};
                     newCb();
@@ -26,8 +24,6 @@
                 originalSet(customizedCB,time);
             }
             global.setTimeout = _setTimeout;
-                            
-            global.assert = assertParent;
         })(root);
         testBlock();
         root=parent;

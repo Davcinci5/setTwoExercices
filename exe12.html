@@ -11,6 +11,7 @@
    test("TestBlock B", function () {
        assert(true, "Inside TestBlock B");
        setTimeout(assert, 500, true, "test delayed B");
+       setTimeout((result, label)=>assert(result, label), 1500, true, "test delayed B1");
     });
    assert(true, "Outside and after TestBlock B");
 </script>
