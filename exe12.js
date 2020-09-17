@@ -12,14 +12,12 @@
         const parent = root;
         root = assert(undefined, description)
             .appendChild(document.createElement('ul'));
-
         (function(_root){
             let originalSet =  global.setTimeout;
-            function _setTimeout(newCb,time,...args){           
-                newCb = newCb.name === 'assert' ? ()=>global.assert(...args) : newCb.bind(this,...args);
+            function _setTimeout(newCb,time,...args){ 
                 let customizedCB = () =>{
-                    global.assert = (pass, message) => { return _root.appendChild(result(message,pass));};
-                    newCb();
+                    root = _root;          
+                    newCb(...args);
                 };
                 originalSet(customizedCB,time);
             }
