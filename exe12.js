@@ -18,21 +18,18 @@
                 assertParent = global.assert;
 
             function _setTimeout(newCb,time,...args){                
+                newCb = newCb.name === 'assert' ? ()=>global.assert(...args) : newCb;
                 let customizedCB = () =>{
                     global.assert = (pass, message) => { return _root.appendChild(result(message,pass));};
-                    if(args.length>0){
-                        global.assert(...args);
-                    }else{
-                        newCb();
-                    }
+                    newCb();
                 };
                 originalSet(customizedCB,time);
             }
             global.setTimeout = _setTimeout;
                             
-            testBlock();
             global.assert = assertParent;
         })(root);
+        testBlock();
         root=parent;
     }
     global.assert = assert;
