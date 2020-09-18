@@ -6,12 +6,11 @@ test("test every element in correct order",done =>{
     document.body.innerHTML = `
     <ul id="results"></ul>  
     `;
-    let{assert,test} = require('./exe12');
+    let {assert,test,setTimeout} = require('./exe12');
     let ul = document.getElementById('results');
-
     assert(true, "Outside and before the test block");
     expect(ul.children.length).toBe(1);
- 
+
     test("TestBlock A", function () {
         let blockA = document.getElementById('results').children[1].children[0].children;
         assert(true, "Inside TestBlock A");
@@ -21,7 +20,6 @@ test("test every element in correct order",done =>{
         expect(blockA[0]).toHaveStyle('color: green');
         expect(blockA[1]).toHaveStyle('color: green');
         expect(blockA[1]).toHaveTextContent(/^test delayed A$/);
-        done();
 
         }, 1000);
     });
@@ -45,6 +43,15 @@ test("test every element in correct order",done =>{
 
     assert(true, "Outside and after TestBlock B");
     expect(ul.children.length).toBe(5);
+
+
+    setTimeout(()=>{
+        assert(true, "Delay outside test block");
+        expect(ul.children.length).toBe(6);
+        done();
+    }, 1000);
+    
+
 
 });
 

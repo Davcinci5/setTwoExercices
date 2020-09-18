@@ -2,6 +2,7 @@
 <script src="./exe12.js"></script>
 <script type="module">
    assert(true, "Outside and before the test block");
+   setTimeout(()=>assert(true, "Delay outside test block"), 1000);
  
    test("TestBlock A", function () {
        assert(true, "Inside TestBlock A");
