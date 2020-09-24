@@ -1,0 +1,27 @@
+
+
+div{
+ font-size: .5em;
+ background-color: teal;
+ margin: auto;
+ width: 7.5em;
+}
+.triangle-top{
+  content: "";
+  display: block;
+  width: 0;
+  height: 0;
+  border-style: solid;
+  border-width: 0 3.75em 7.5em 3.75em;
+  border-color: transparent red #8f4c4c yellow;
+}
+.father *:nth-child(2) {
+  float: left;
+}
+.father *:nth-child(3) {
+  float: left;
+} 
+.father *:nth-child(1) {
+  overflow: hidden;
+}
+

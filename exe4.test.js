@@ -6,7 +6,7 @@ require('@testing-library/jest-dom/extend-expect');
 const querySelectorAll =  require('./exe4');
 test('return a list of three elements using classes and checked', () => {
     document.body.innerHTML = `
-    <section>
+    <section> 
         <div id="1" class="note"><input type="checkbox" class="is-complete" checked></div>
         <div id="2" class="note"></div>
         <div id="3" class="note"><input type="checkbox" class="is-complete" checked></div>
