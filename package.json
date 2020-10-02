@@ -1,5 +1,6 @@
 {
   "name": "settwopromises",
+
   "version": "1.0.0",
   "description": "",
   "main": "exe1.js",
@@ -16,16 +17,20 @@
     "test:ten": "jest -i exe10.test.js",
     "test:eleven": "jest -i exe11.test.js",
     "test:twelve": "jest -i exe12.test.js",
-    "test:thirteen": "jest -i exe13.test.js"
+    "test:thirteen": "jest -i exe13.test.js",
+    "test:fourteen": "jest -i exe14.test.js"
   },
   "author": "",
   "license": "ISC",
   "dependencies": {
-    "jest": "^26.4.0"
+    "canvas": "^2.6.1",
+    "jest": "^26.4.0",
+    "sinon": "^9.1.0"
   },
   "devDependencies": {
     "@testing-library/dom": "^7.23.0",
     "@testing-library/jest-dom": "^5.11.4",
-    "eslint": "^7.7.0"
+    "eslint": "^7.7.0",
+    "jest-canvas-mock": "^2.3.0"
   }
 }

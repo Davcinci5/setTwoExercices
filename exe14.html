@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="./exe14.css">
+</head>
+<body>
+    <div class="buttons">
+        <form action="/">
+            <label for="shape">Choose a shape:</label>
+            <select name="shape" id="shapes">
+              <option selected value="triangle">triangle</option>
+              <option value="circle">circle</option>
+              <option value="rectangle">rectangle</option>
+            </select>
+            <input id="shapeMaker"type="submit" value="create">
+          </form>
+          <button id="scale">Scale </button>
+            <button id="rotate"> Rotate </button>
+            <button id="delete"> Delete</button>
+            <br/>
+            <button id="translate"> Translate</button>
+            <select name="translate" id="translateVal">
+              <option selected value="up">up</option>
+              <option value="down">down</option>
+              <option value="right">right</option>
+              <option value="left">left</option>
+            </select>
+    </div>
+      <canvas id="tutorial" width="600" height="600"></canvas>
+    
+
+    <script src="./exe14.js"></script>
+</body>
+</html>

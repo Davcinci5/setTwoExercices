@@ -38,6 +38,6 @@ function createClickEvent(button){
         }
     });
 }
-// let button = document.getElementById('event');
-// createClickEvent(button);
+let button = document.getElementById('event');
+createClickEvent(button);
 module.exports =createClickEvent;
