@@ -188,7 +188,7 @@ test('verifying App',() =>{
         //Deleting 
         view.buttonDelete.click();
     }
-    expect(model.arreRectangles.length).toBe(5);
+    expect(model.arreCircles.length).toBe(5);
 
 
 
